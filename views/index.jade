@@ -1,0 +1,41 @@
+﻿extends layout
+
+
+block content
+   .jumbotron
+    h1 Calculator
+    p.lead listbox + inputbox + buttons: add, remove, clear. Next row: statistical functions buttons
+    p
+     select(id="lstSelect", name="lstSelect", size ="5")
+    p
+      button(onclick='editItem()' id='btEdit') Edit
+      button(onclick='removeItem()') Remove
+      button(onclick='clearAll()') ClearAll
+    p
+      input(
+      type='text'
+      name='txt1'
+      id='txt1'
+      ) 
+      button(onclick='add()') Add
+      script.
+        var list = document.getElementById("lstSelect");
+        function roundDown(number, decimals) {
+            decimals = decimals || 0;
+            return ( Math.floor( number * Math.pow(10, decimals) ) / Math.pow(10, decimals) );
+        }
+        function fill(){
+        
+        for (var i = 0; i < 5; i++) {
+                var option = document.createElement("option");
+                 option.text =roundDown(Math.random()*100,3); 
+                list.add(option);
+              } 
+        }
+        fill();
+     p  
+        button(onclick='alert(Sum(lst2array(list)));') Sum
+        button(onclick='alert(Avg(lst2array(list)));') Avg
+        button(onclick='alert(standardDeviation(lst2array(list)));') StdDev
+   
+   
